@@ -1,7 +1,8 @@
+import InitialModal from "@/components/modals/initial-modal";
+import React from "react";
 import { db } from "@/lib/db";
 import { initialProfile } from "@/lib/initial-profile";
 import { redirect } from "next/navigation";
-import React from "react";
 
 export default async function Setuppage() {
   const profile = await initialProfile();
@@ -19,5 +20,5 @@ export default async function Setuppage() {
     return redirect(`/server/${server.id}`);
   }
 
-  return <div>Setuppage</div>;
+  return <InitialModal />;
 }
