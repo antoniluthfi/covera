@@ -1,8 +1,13 @@
 "use client";
 
 import * as z from "zod";
+import axios from "axios";
+import FileUpload from "@/components/file-upload";
 import React, { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import {
@@ -12,7 +17,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "../ui/dialog";
+} from "@/components/ui/dialog";
 import {
   Form,
   FormControl,
@@ -20,12 +25,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import FileUpload from "../file-upload";
-import { useRouter } from "next/navigation";
-import axios from "axios";
+} from "@/components/ui/form";
 
 const formSchema = z.object({
   name: z.string().min(1, {
