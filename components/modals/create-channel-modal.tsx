@@ -2,7 +2,7 @@
 
 import * as z from "zod";
 import axios from "axios";
-import React from "react";
+import React, { useEffect } from "react";
 import qs from "query-string";
 import { Button } from "@/components/ui/button";
 import { ChannelType } from "@prisma/client";
@@ -48,17 +48,18 @@ const formSchema = z.object({
 });
 
 export default function CreateChannelModal() {
-  const { type, isOpen, onClose } = useModal();
+  const { type, isOpen, onClose, data } = useModal();
   const router = useRouter();
   const params = useParams();
 
   const isModalOpen = isOpen && type === "createChannel";
+  const { channelType } = data;
 
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
-      type: ChannelType.TEXT,
+      type: channelType || ChannelType.TEXT,
     },
   });
 
@@ -87,6 +88,14 @@ export default function CreateChannelModal() {
     form.reset();
     onClose();
   };
+
+  useEffect(() => {
+    if (channelType) {
+      form.setValue("type", channelType);
+    } else {
+      form.setValue("type", ChannelType.TEXT);
+    }
+  }, [channelType, form]);
 
   return (
     <Dialog open={isModalOpen} onOpenChange={handleClose}>
