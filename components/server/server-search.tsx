@@ -34,12 +34,14 @@ export default function ServerSearch({ data }: ServerSearchProps) {
   const getOperatingSystem = () => {
     let operatingSystem = "Unknown";
 
-    if (navigator.userAgent.indexOf("Win") != -1) {
-      operatingSystem = "Windows";
-    } else if (navigator.userAgent.indexOf("Mac") != -1) {
-      operatingSystem = "MacOS";
-    } else if (navigator.userAgent.indexOf("Linux") != -1) {
-      operatingSystem = "Linux";
+    if (typeof navigator !== "undefined") {
+      if (navigator.userAgent.indexOf("Win") != -1) {
+        operatingSystem = "Windows";
+      } else if (navigator.userAgent.indexOf("Mac") != -1) {
+        operatingSystem = "MacOS";
+      } else if (navigator.userAgent.indexOf("Linux") != -1) {
+        operatingSystem = "Linux";
+      }
     }
 
     return operatingSystem;
