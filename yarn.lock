@@ -1466,6 +1466,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tanstack/query-core@npm:5.15.5":
+  version: 5.15.5
+  resolution: "@tanstack/query-core@npm:5.15.5"
+  checksum: 95e961d659e12b4ce7c69a01929dbae4925707604a82305f3577fc6171f691d7483ceb68fb15504bb2d53eecb17bcb089f78ccc97e881686d77c64537493a3da
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-query@npm:^5.15.5":
+  version: 5.15.5
+  resolution: "@tanstack/react-query@npm:5.15.5"
+  dependencies:
+    "@tanstack/query-core": 5.15.5
+  peerDependencies:
+    react: ^18.0.0
+  checksum: 29ae71d70ccc5bc027b629e9b690f93328429420d83783890cad9e30043a0843285f6f4dcfbc4871b1f2e4fea9853ac4900bb324982ba44b5eecaecf6a7d8411
+  languageName: node
+  linkType: hard
+
 "@tootallnate/once@npm:2":
   version: 2.0.0
   resolution: "@tootallnate/once@npm:2.0.0"
@@ -2510,6 +2528,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"date-fns@npm:^3.0.6":
+  version: 3.0.6
+  resolution: "date-fns@npm:3.0.6"
+  checksum: ee62b8e764e4c11c418d342f401d3e85adb4a631b196746e49ac89099c8d34cb141f10ae953c4a72bd3c76fe4d8740ec89564c8599a31256c82adbbed56c0014
+  languageName: node
+  linkType: hard
+
 "debug@npm:4, debug@npm:^4.1.1, debug@npm:^4.3.2, debug@npm:^4.3.3, debug@npm:^4.3.4, debug@npm:~4.3.1, debug@npm:~4.3.2":
   version: 4.3.4
   resolution: "debug@npm:4.3.4"
@@ -2637,6 +2662,7 @@ __metadata:
     "@radix-ui/react-separator": ^1.0.3
     "@radix-ui/react-slot": ^1.0.2
     "@radix-ui/react-tooltip": ^1.0.7
+    "@tanstack/react-query": ^5.15.5
     "@types/node": ^20
     "@types/react": ^18
     "@types/react-dom": ^18
@@ -2647,6 +2673,7 @@ __metadata:
     class-variance-authority: ^0.7.0
     clsx: ^2.0.0
     cmdk: ^0.2.0
+    date-fns: ^3.0.6
     emoji-mart: ^5.5.2
     eslint: ^8
     eslint-config-next: 14.0.0
