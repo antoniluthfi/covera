@@ -14,6 +14,7 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import axios from "axios";
 import { useModal } from "@/hooks/use-modal-store";
+import { useParams, useRouter } from "next/navigation";
 
 interface ChatItemProps {
   id: string;
@@ -54,6 +55,9 @@ export default function ChatItem({
   socketUrl,
   socketQuery,
 }: ChatItemProps) {
+  const router = useRouter();
+  const params = useParams();
+
   const { onOpen } = useModal();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -75,6 +79,14 @@ export default function ChatItem({
   const isImage = !isPDF && fileUrl;
 
   const isLoading = form.formState.isSubmitting;
+
+  const onMemberClick = () => {
+    if (member.id === currentMember.id) {
+      return;
+    }
+
+    router.push(`/servers/${params?.serverId}/conversations/${member.id}`);
+  };
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
@@ -113,14 +125,20 @@ export default function ChatItem({
   return (
     <div className="relative group flex items-center hover:bg-black/5 p-4 transition w-full">
       <div className="group flex gap-2 items-start w-full">
-        <div className="cursor-pointer hover:drop-shadow-md transition">
+        <div
+          className="cursor-pointer hover:drop-shadow-md transition"
+          onClick={onMemberClick}
+        >
           <UserAvatar src={member.profile.imageUrl} />
         </div>
 
         <div className="flex flex-col w-full">
           <div className="flex items-center gap-x-2">
             <div className="flex items-center">
-              <p className="font-semibold text-sm hover:underline cursor-pointer">
+              <p
+                className="font-semibold text-sm hover:underline cursor-pointer"
+                onClick={onMemberClick}
+              >
                 {member.profile.name}
               </p>
 

@@ -94,24 +94,23 @@ export default async function handler(
     }
 
     if (req.method === "DELETE") {
-      message ===
-        (await db.message.update({
-          where: {
-            id: messageId as string,
-          },
-          data: {
-            fileUrl: null,
-            content: "This message has been deleted.",
-            deleted: true,
-          },
-          include: {
-            member: {
-              include: {
-                profile: true,
-              },
+      message = await db.message.update({
+        where: {
+          id: messageId as string,
+        },
+        data: {
+          fileUrl: null,
+          content: "This message has been deleted.",
+          deleted: true,
+        },
+        include: {
+          member: {
+            include: {
+              profile: true,
             },
           },
-        }));
+        },
+      });
     }
 
     if (req.method === "PATCH") {
@@ -121,24 +120,23 @@ export default async function handler(
 
       if (!content) {
         return res.status(400).json({ message: "Content Missing" });
-      }  
+      }
 
-      message ===
-        (await db.message.update({
-          where: {
-            id: messageId as string,
-          },
-          data: {
-            content,
-          },
-          include: {
-            member: {
-              include: {
-                profile: true,
-              },
+      message = await db.message.update({
+        where: {
+          id: messageId as string,
+        },
+        data: {
+          content,
+        },
+        include: {
+          member: {
+            include: {
+              profile: true,
             },
           },
-        }));
+        },
+      });
     }
 
     const updateKey = `chat:${channelId}:messages:update`;
